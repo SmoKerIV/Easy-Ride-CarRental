@@ -7,13 +7,90 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url      = "postgres://default:SAoKi69bzRlY@ep-wispy-poetry-42329094.eu-central-1.postgres.vercel-storage.com:5432/verceldb"
 }
 
-model User {
-  id        String @id
-  name      String
-  email     String
-  password  String
-  role      enum("ADMIN", "USER")
+// Define ENUMs
+enum CarCondition {
+  NEW
+  GOOD
+  OK
+  BAD
+}
+
+enum CarCategory {
+  SUV
+  SEDAN
+  SPORT
+  PICKUP
+  COUPE
+}
+
+enum UserRole {
+  ADMIN
+  USER
+}
+
+// Define the Prisma schema
+model Users {
+  id       Int       @id @default(autoincrement())
+  userName String    @unique
+  password String
+  email    String    @unique
+  fullName String
+  role     UserRole
+  myCars   Int[]
+  cars     Cars[]
+  booking  Booking[]
+}
+
+model Cars {
+  userId         Int
+  id              Int          @id @default(autoincrement())
+  brandId        Int
+  storeId        Int
+  booking         Booking[]
+  name            String
+  model           String
+  category        CarCategory
+  condition       CarCondition
+  year            Int
+  seats           Int
+  tank            Float
+  fuel_type       String
+  mileage         Float
+  available       Boolean
+  price           Float
+  plate_number    String
+  priceDay   Float
+  priceWeek  Float
+  priceMonth Float
+  numberDoors Int
+  dateCreated    DateTime     @default(now())
+  dateUpdated    DateTime     @updatedAt
+  brand           Brands       @relation(fields: [brandId], references: [brandId])
+  store           Stores       @relation(fields: [storeId], references: [id])
+  user            Users        @relation(fields: [userId], references: [id])
+}
+
+model Brands {
+  brandId   Int    @id @default(autoincrement())
+  brandName String
+  cars       Cars[]
+  image      String
+}
+
+model Stores {
+  id      Int    @id @default(autoincrement())
+  name    String
+  address String
+  cars    Cars[]
+}
+
+model Booking {
+  id      Int @id @default(autoincrement())
+  userId Int
+  carId  Int
+  user Users @relation(fields: [userId], references: [id])
+  car  Cars  @relation(fields: [carId], references: [id])
 }

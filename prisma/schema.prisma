@@ -45,8 +45,8 @@ model Users {
 }
 
 model Cars {
-  userId      Int
   id          Int          @id @default(autoincrement())
+  userId      Int
   brandId     Int
   storeId     Int
   name        String
@@ -65,7 +65,7 @@ model Cars {
   category    CarCategory
   condition   CarCondition
   dateCreated DateTime     @default(now())
-  dateUpdated DateTime?     @updatedAt
+  dateUpdated DateTime?    @updatedAt
   booking     Booking[]
   brand       Brands       @relation(fields: [brandId], references: [brandId])
   store       Stores       @relation(fields: [storeId], references: [id])
@@ -73,14 +73,14 @@ model Cars {
 }
 
 model Brands {
-  brandId   Int     @id @default(autoincrement())
-  brandName String
-  cars      Cars[]
-  image     String?
+  brandId Int     @id @default(autoincrement())
+  name    String
+  cars    Cars[]
+  image   String?
 }
 
 model Stores {
-  id      Int    @id @default(autoincrement())
+  id      Int     @id @default(autoincrement())
   name    String
   address String?
   cars    Cars[]

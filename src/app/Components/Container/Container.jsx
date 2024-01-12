@@ -1,4 +1,4 @@
-import styles from "./container.module.css";
+import styles from "./Container.module.css";
 
 const Container = ({ children, width = 1400 }) => {
   return (

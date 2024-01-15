@@ -16,6 +16,7 @@ async function createUser(username, hashedPassword) {
     data: {
       name: username,
       password: hashedPassword,
+      
     },
   });
 

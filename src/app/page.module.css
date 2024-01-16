@@ -1,20 +1,32 @@
 .hero {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     position: relative;
 }
 
+.hero .herocontent {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+
+}
+
+.hero .car {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .hero .herotitle {
-    font-size: 65px;
+    font-size: 85px;
     font-weight: bold;
 }
 
-.hero p {
-    width: 200px;
+.hero .herodescription {
+    font-size: 20px;
+    width: 400px;
 }
 
-.hero p span {
+.hero .herodescription span {
     color: #0080B4;
 
 }
@@ -22,7 +34,7 @@
 .blue {
     background: var(--Linier-Accent, linear-gradient(180deg, #1B1B1B 0, #0081b428 122.85%));
     width: 450px;
-    height: 100vh;
+    height: 100%;
     z-index: -1;
     position: absolute;
     top: 0;
@@ -45,6 +57,89 @@
     height: auto;
     display: block;
     margin: 0 auto;
+}
+
+.hero .btm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.hero .btm button {
+    background-color: #0080B4;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.2s;
+    margin: 20px;
+}
+
+.hero .btm button:hover {
+    background-color: #006080;
+}
+
+
+.services {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.services .servicestitle {
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 16px;
+}
+.serviceContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.serviceCard {
+    width: calc(50% - 20px);
+    padding: 8px;
+    margin: 20px;
+    background-color: #1B1B1B;
+    border: 1px solid #6e6e6e;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+.serviceCard:hover {
+    transform: scale(1.05);
+}
+
+.serviceImage {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.serviceImage img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.serviceContent {
+    padding: 16px;
+}
+
+.serviceContent h2 {
+    color: #1B1B1B;
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.serviceContent p {
+    font-size: 16px;
+    color: #555;
 }
 
 @media screen and (max-width: 550px) {

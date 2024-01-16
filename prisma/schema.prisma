@@ -46,9 +46,9 @@ model Users {
 
 model Cars {
   id          Int          @id @default(autoincrement())
-  userId      Int
-  brandId     Int
-  storeId     Int
+  userId      Int?
+  brandId     Int?
+  storeId     Int?
   name        String
   model       String
   year        Int
@@ -58,6 +58,10 @@ model Cars {
   mileage     Float?
   available   Boolean
   plateNumber String
+  image1      String
+  image2      String?
+  image3      String?
+  image4      String?
   priceDay    Float
   priceWeek   Float?
   priceMonth  Float?
@@ -67,9 +71,9 @@ model Cars {
   dateCreated DateTime     @default(now())
   dateUpdated DateTime?    @updatedAt
   booking     Booking[]
-  brand       Brands       @relation(fields: [brandId], references: [brandId])
-  store       Stores       @relation(fields: [storeId], references: [id])
-  user        Users        @relation(fields: [userId], references: [id])
+  brand       Brands?       @relation(fields: [brandId], references: [brandId])
+  store       Stores?       @relation(fields: [storeId], references: [id])
+  user        Users?        @relation(fields: [userId], references: [id])
 }
 
 model Brands {

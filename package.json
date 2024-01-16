@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@nextui-org/react": "^2.2.9",
     "@prisma/client": "5.7.1",
     "bcryptjs": "^2.4.3",
     "jsonwebtoken": "^9.0.2",

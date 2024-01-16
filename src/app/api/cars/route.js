@@ -1,23 +1,20 @@
 import { PrismaClient } from '@prisma/client';
-
+import { NextResponse } from "next/server";
 const prisma = new PrismaClient();
 
-export default async function handler(req, res) {
-  if (req.method === 'GET') {
-    const { name } = req.query;
 
-    const cars = name 
-      ? await prisma.cars.findMany({
-          where: {
-            name: {
-              contains: name,
-            },
-          },
-        })
-      : await prisma.cars.findMany();
-
-    res.status(200).json(cars);
-  } else {
-    res.status(405).json({ error: 'Method not allowed' });
+export default async function GET(req, res) {
+  try{
+    const cars = await prisma.cars.findMany();
+    NextResponse.json({
+      success: true,
+      cars: cars
+    });
+  }
+  catch{
+    NextResponse.json({
+      success: false,
+      message: error.message
+    });
   }
 }

@@ -1,20 +1,40 @@
 import { PrismaClient } from '@prisma/client';
-import { NextResponse } from "next/server";
+import { NextResponse } from 'next/server';
+
 const prisma = new PrismaClient();
 
-
-export default async function GET(req, res) {
-  try{
+export const GET = async (req, res) => {
+  try {
     const cars = await prisma.cars.findMany();
-    NextResponse.json({
+    return NextResponse.json({
       success: true,
-      cars: cars
+      cars: cars,
     });
-  }
-  catch{
-    NextResponse.json({
+  } catch (error) {
+    return NextResponse.json({
       success: false,
-      message: error.message
+      message: error.message,
     });
+  } finally {
+    await prisma.$disconnect();
+  }
+};
+export const POST = async (req, res) => {
+  const body = await req.json();
+  try {
+    const car = await prisma.cars.create({
+      data: body
+    });
+    return NextResponse.json({
+      success: true,
+      car: car,
+    });
+  } catch (error) {
+    return NextResponse.json({
+      success: false,
+      message: error.message,
+    });
+  } finally {
+    await prisma.$disconnect();
   }
 }

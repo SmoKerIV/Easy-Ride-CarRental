@@ -5,10 +5,10 @@ const prisma = new PrismaClient();
 
 export const GET = async (req, res) => {
   try {
-    const cars = await prisma.cars.findMany();
+    const stores = await prisma.stores.findMany();
     return NextResponse.json({
       success: true,
-      cars: cars,
+      stores: stores,
 
     });
   } catch (error) {
@@ -26,12 +26,12 @@ export const GET = async (req, res) => {
 export const POST = async (req, res) => {
   const body = await req.json();
   try {
-    const car = await prisma.cars.create({
+    const store = await prisma.stores.create({
       data: body
     });
     return NextResponse.json({
       success: true,
-      car: car,
+      store: store,
     });
   } catch (error) {
     return NextResponse.json({

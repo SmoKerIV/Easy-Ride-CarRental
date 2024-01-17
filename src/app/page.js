@@ -1,8 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
-import Container from "./Components/Container/Container";
+import Container from "@/Components/Container/Container";
 import styles from "./page.module.css";
-import Header from "./Components/Header/Header";
+import Header from "@/Components/Header/Header";
 
 
 const Home = () => {
@@ -29,8 +29,8 @@ const Home = () => {
     },
   ];
   return (
-    <>
-      <Header />
+  <>
+  <Header/>
       <Container width={1200}>
         <div className={styles.hero}>
           <div className={styles.blue}></div>

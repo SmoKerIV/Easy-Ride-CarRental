@@ -2,7 +2,6 @@
 import Head from "next/head";
 import { Inter } from "next/font/google"; // Correct the import path
 import "./globals.css";
-import Header from "./Components/Header/Header";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,7 +16,6 @@ const RootLayout = ({ children }) => {
       <Head>
         <html lang="en" />
       </Head>
-      <Header />
       <body className={inter.className}>{children}</body>
     </>
   );

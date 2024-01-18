@@ -3,19 +3,13 @@ import { NextResponse } from 'next/server';
 
 const prisma = new PrismaClient();
 
-export const GET = async (req, {params}) => {
-  const { id } = params;
-console.log(id)
+export const GET = async (req, res) => {
   try {
-    const car = await prisma.cars.findUnique({
-      where: {
-        id: Number(id),
-      },
-    });
-    
+    const brands = await prisma.brands.findMany();
     return NextResponse.json({
       success: true,
-      car: car,
+      brands: brands,
+
     });
   } catch (error) {
     return NextResponse.json({

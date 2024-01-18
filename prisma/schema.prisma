@@ -33,7 +33,7 @@ enum UserRole {
 
 // Define the Prisma schema
 model Users {
-  id       Int       @id @default(autoincrement())
+  id       Int       @id @default (autoincrement())
   userName String    @unique
   password String
   email    String    @unique

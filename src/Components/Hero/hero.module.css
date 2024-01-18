@@ -1,0 +1,112 @@
+.hero {
+    position: relative;
+}
+
+.hero .herocontent {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+
+}
+
+.hero .car {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.hero .car img{
+    width: 100%;
+    height: auto;
+}
+
+.hero .herotitle {
+    font-size: 85px;
+    font-weight: bold;
+}
+
+.hero .herodescription {
+    font-size: 20px;
+    width: 400px;
+}
+
+.hero .herodescription span {
+    color: #0080B4;
+
+}
+
+.blue {
+    background: var(--Linier-Accent, linear-gradient(180deg, #1B1B1B 0, #0081b428 122.85%));
+    width: 450px;
+    height: 100%;
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.imageContainer {
+    position: absolute;
+    top: 150%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+.centeredImage {
+    width: 600px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.hero .btm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.hero .btm button {
+    background-color: #0080B4;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.2s;
+    margin: 20px;
+}
+
+.hero .btm button:hover {
+    background-color: #006080;
+}
+@media screen and (max-width: 550px) {
+    .hero .herotitle {
+        font-size: 40px;
+    }
+
+    .hero p {
+        width: 150px;
+
+    }
+
+    .blue {
+        width: 200px;
+    }
+
+}
+
+@media screen and (max-width: 550px) {
+    .hero .herotitle {
+        font-size: 30px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+}

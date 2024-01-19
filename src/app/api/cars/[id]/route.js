@@ -5,7 +5,7 @@ const prisma = new PrismaClient();
 
 export const GET = async (req, {params}) => {
   const { id } = params;
-console.log(id)
+
   try {
     const car = await prisma.cars.findUnique({
       where: {
@@ -34,7 +34,7 @@ console.log(id)
   try {
     const car = await prisma.cars.delete({
       where: {
-        id: Number(id),
+        Id: Number(id),
       },
     });
     

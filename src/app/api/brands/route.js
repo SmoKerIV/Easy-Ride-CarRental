@@ -20,3 +20,24 @@ export const GET = async (req, res) => {
     await prisma.$disconnect();
   }
 };
+
+
+export const POST = async (req, res) => {
+  const body = await req.json();
+  try {
+    const brand = await prisma.brands.create({
+      data: body
+    });
+    return NextResponse.json({
+      success: true,
+      brand: brand,
+    });
+  } catch (error) {
+    return NextResponse.json({
+      success: false,
+      message: error.message,
+    });
+  } finally {
+    await prisma.$disconnect();
+  }
+}

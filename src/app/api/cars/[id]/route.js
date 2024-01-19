@@ -26,3 +26,54 @@ console.log(id)
     await prisma.$disconnect();
   }
 };
+
+
+export const DELETE = async (req, {params}) => {
+  const { id } = params;
+console.log(id)
+  try {
+    const car = await prisma.cars.delete({
+      where: {
+        id: Number(id),
+      },
+    });
+    
+    return NextResponse.json({
+      success: true,
+      car: car,
+    });
+  } catch (error) {
+    return NextResponse.json({
+      success: false,
+      message: error.message,
+    });
+  } finally {
+    await prisma.$disconnect();
+  }
+};
+
+
+
+export const PUT = async (req, {params}) => {
+  const { id } = params;
+console.log(id)
+  try {
+    const car = await prisma.cars.update({
+      where: {
+        id: Number(id),
+      },
+    });
+    
+    return NextResponse.json({
+      success: true,
+      car: car,
+    });
+  } catch (error) {
+    return NextResponse.json({
+      success: false,
+      message: error.message,
+    });
+  } finally {
+    await prisma.$disconnect();
+  }
+};

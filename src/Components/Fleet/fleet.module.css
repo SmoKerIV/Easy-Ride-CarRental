@@ -1,0 +1,46 @@
+.fleet {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 0;
+}
+
+.fleetContainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.filterButtons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.filterButtons button {
+    background-color: #0080b4;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.filterButtons button:hover {
+    background-color: #006080;
+}
+
+.carCards {
+    display: flex;
+    justify-content: center;
+}
+
+/* Add more styles to enhance the look of the car cards */

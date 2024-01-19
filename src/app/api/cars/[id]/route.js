@@ -58,7 +58,7 @@ export const PUT = async (req, {params}) => {
   const { id } = params;
 console.log(id)
   try {
-    const car = await prisma.cars.updatenp({
+    const car = await prisma.cars.update({
       where: {
         id: Number(id),
       },

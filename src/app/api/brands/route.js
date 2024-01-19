@@ -4,6 +4,7 @@ import { NextResponse } from 'next/server';
 const prisma = new PrismaClient();
 
 export const GET = async (req, res) => {
+  
   try {
     const brands = await prisma.brands.findMany();
     return NextResponse.json({
@@ -11,6 +12,7 @@ export const GET = async (req, res) => {
       brands: brands,
 
     });
+
   } catch (error) {
     return NextResponse.json({
       success: false,

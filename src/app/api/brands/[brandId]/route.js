@@ -7,7 +7,7 @@ export const GET = async (req, {params}) => {
   const { brandId } = params;
   const parsedBrandId = parseInt(brandId, 10);
   try {
-    const brand = await prisma.cars.findMany({
+    const cars = await prisma.cars.findMany({
       where: {
         brandId: parsedBrandId,
       },
@@ -15,7 +15,7 @@ export const GET = async (req, {params}) => {
     
     return NextResponse.json({
       success: true,
-      brand: brand,
+      cars: cars,
     });
   } catch (error) {
     return NextResponse.json({

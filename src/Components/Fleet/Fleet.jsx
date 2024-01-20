@@ -1,5 +1,5 @@
 // Fleet.jsx
-
+'use client'
 import { useState, useEffect } from "react";
 import Carousel from "./Carousel/Carousel";
 import { CARS_URL } from "@/apiconfig/endpoint";

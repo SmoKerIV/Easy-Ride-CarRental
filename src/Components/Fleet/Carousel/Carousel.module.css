@@ -2,16 +2,24 @@
 
 .carousel {
     display: flex;
-    overflow: hidden;
     margin: 20px 0;
 }
 
+.carousel button {
+    border: none;
+    padding: 10px 30px;
+    font-size: 16px;
+}
+
 .carouselCard {
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    width: calc(50% - 20px);
+    width: 400px;
     padding: 16px;
-    margin-right: 16px;
+    margin: 20px;
     background-color: #1f1f1f;
+    border: 1px solid #6e6e6e;
+    border-radius: 8px;
+    overflow: hidden;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease-in-out;
 }

@@ -1,9 +1,8 @@
 "use client";
 import Container from "@/Components/Container/Container";
-import styles from "./page.module.css";
 import Header from "@/Components/Header/Header";
-import Hero from "@/Components/Hero/hero";
-import Services from "@/Components/Services/services";
+import Hero from "@/Components/Hero/page";
+import Services from "@/Components/Services/page";
 import Fleet from "@/Components/Fleet/Fleet";
 
 const Home = () => {
@@ -13,7 +12,7 @@ const Home = () => {
       <Header />
       <Container width={1200}>
         <Hero />
-        <Services/>
+        <Services />
         <Fleet />
       </Container>
     </>

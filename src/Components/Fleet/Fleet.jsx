@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Carousel from "./Carousel/Carousel";
 import { CARS_URL } from "@/apiconfig/endpoint";
-import styles from "./Fleet.module.css";
+import styles from "./fleet.module.css";
 
 const Fleet = () => {
   const [cars, setCars] = useState([]);
@@ -37,7 +37,7 @@ const Fleet = () => {
     <div className={styles.fleet}>
     <div className={styles.fleetContainer}>
       <h1>View Our Fleet</h1>
-      <p>hi</p>
+      {/* <p>hi</p> */}
       <div className={styles.filterButtons}>
         <button onClick={() => handleFilter("SUV")}>SUV</button>
         <button onClick={() => handleFilter("SEDAN")}>Sedan</button>

@@ -16,7 +16,10 @@
     align-items: center;
 }
 
-
+.hero .car img{
+    width: 800px;
+    height: auto;
+}
 .hero .herotitle {
     font-size: 85px;
     font-weight: bold;

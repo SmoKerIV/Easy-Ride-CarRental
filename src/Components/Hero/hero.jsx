@@ -26,6 +26,7 @@ function Hero() {
           alt="car"
           width={800}
           height={800}
+          priority
         />
       </div>
       <div className={styles.btm}>

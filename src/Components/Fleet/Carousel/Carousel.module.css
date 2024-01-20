@@ -28,11 +28,18 @@
     transform: scale(1.05);
 }
 
-.carImage {
+.imageContainer {
+    position: relative;
     width: 100%;
     height: 200px;
+    /* or whatever height you want */
+}
+
+.carImage {
+    position: absolute;
     object-fit: cover;
-    border-radius: 8px;
+    width: 100%;
+    height: 100%;
 }
 
 .carName {

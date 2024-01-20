@@ -1,6 +1,5 @@
 'use client';
 import { useState } from "react";
-import Image from "next/image";
 import styles from "./Carousel.module.css";
 
 const Carousel = ({ cars }) => {
@@ -39,13 +38,9 @@ const Carousel = ({ cars }) => {
       </button>
       {cars.slice(current, current + 3).map((car) => (
         <div key={car.id} className={styles.carouselCard}>
-          <Image
-            className={styles.carImage}
-            src={car.image1}
-            alt={car.name}
-            width={400}
-            height={400}
-          />
+          <div className={styles.imageContainer}>
+            <img className={styles.carImage} src={car.image1} alt={car.name} />
+          </div>
           <h3 className={styles.carName}>{car.name}</h3>
           <p className={styles.seats}>Seats: {car.seats}</p>
         </div>

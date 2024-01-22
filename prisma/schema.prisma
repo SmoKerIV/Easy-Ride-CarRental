@@ -1,3 +1,6 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
 generator client {
   provider = "prisma-client-js"
 }
@@ -7,16 +10,38 @@ datasource db {
   url      = "postgres://default:SAoKi69bzRlY@ep-wispy-poetry-42329094.eu-central-1.postgres.vercel-storage.com:5432/verceldb"
 }
 
+// Define ENUMs
+enum CarCondition {
+  NEW
+  GOOD
+  OK
+  BAD
+}
+
+enum CarCategory {
+  SUV
+  SEDAN
+  SPORT
+  PICKUP
+  COUPE
+}
+
+enum UserRole {
+  ADMIN
+  USER
+}
+
+// Define the Prisma schema
 model Users {
-  id       Int       @id @default (autoincrement())
+  id       Int       @id @default(autoincrement())
   userName String    @unique
   password String
   email    String    @unique
   fullName String?
   role     UserRole
   myCars   Int[]
-  booking  Booking[]
   cars     Cars[]
+  booking  Booking[]
 }
 
 model Cars {
@@ -54,8 +79,8 @@ model Cars {
 model Brands {
   brandId Int     @id @default(autoincrement())
   name    String
-  image   String?
   cars    Cars[]
+  image   String?
 }
 
 model Stores {
@@ -69,26 +94,6 @@ model Booking {
   id     Int   @id @default(autoincrement())
   userId Int
   carId  Int
-  car    Cars @relation(fields: [carId], references: [id])
   user   Users @relation(fields: [userId], references: [id])
-}
-
-enum CarCondition {
-  NEW
-  GOOD
-  OK
-  BAD
-}
-
-enum CarCategory {
-  SUV
-  SEDAN
-  SPORT
-  PICKUP
-  COUPE
-}
-
-enum UserRole {
-  ADMIN
-  USER
+  car    Cars  @relation(fields: [carId], references: [id])
 }

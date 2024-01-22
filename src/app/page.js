@@ -1,15 +1,24 @@
-import Container from './Components/Container/Container'
-import Header from './Components/Header/Header';
+"use client";
+import Container from "@/Components/Container/Container";
+import Header from "@/Components/Header/Header";
+import Hero from "@/Components/Hero/page";
+import Services from "@/Components/Services/page";
+import Fleet from "@/Components/Fleet/Fleet";
+import Footer from "@/Components/Footer/Footer";
 
-export default function Home() {
+const Home = () => {
+
   return (
     <>
-      <Container>
-        <Header/>
-        <div className="hero">
-          <h1>hello</h1>
-        </div>
+      <Header />
+      <Container width={1200}>
+        <Hero />
+        <Services />
+        <Fleet />
+        <Footer/>
       </Container>
     </>
   );
-}
+};
+
+export default Home;

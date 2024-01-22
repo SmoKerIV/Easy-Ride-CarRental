@@ -1,0 +1,78 @@
+/* Footer.module.css */
+
+.footer {
+    background-color: black;
+    color: white;
+    width: 100%;
+    bottom: 0;
+}
+
+.footer .r1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 20px;
+    width: 100%;
+    border-bottom: 1px solid rgb(20, 20, 20);
+}
+
+.footer .socials ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.footer .socials li {
+    margin-right: 10px;
+}
+
+.footer .logo h1 {
+    margin: 0;
+}
+
+.footer .logo span {
+    color: #0080B4; /* Set the color of the span if needed */
+}
+
+.footer p {
+    margin: 0;
+}
+
+.footer .r2{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 32px;
+    border-bottom: 1px solid rgb(20, 20, 20);
+}
+.footer .r2 svg{
+    font-size: 16px;
+}
+.footer .r2 .phone{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.footer .r2 .email{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.footer .r2 .address{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.footer .r3 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 24px;
+}
+.footer .r3 p{
+    font-size: 12px;
+}

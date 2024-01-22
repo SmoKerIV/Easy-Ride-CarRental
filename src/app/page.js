@@ -15,8 +15,8 @@ const Home = () => {
         <Hero />
         <Services />
         <Fleet />
-        <Footer/>
       </Container>
+        <Footer/>
     </>
   );
 };

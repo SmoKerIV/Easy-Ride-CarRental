@@ -12,7 +12,7 @@ const Fleet = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(CARS_URL2);
+        const response = await fetch(CARS_URL);
         const data = await response.json();
         setCars(data.cars);
         setFilteredCars(data.cars); 

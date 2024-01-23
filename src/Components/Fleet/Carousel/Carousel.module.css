@@ -2,12 +2,15 @@
 
 .carousel {
     display: flex;
+    overflow-x: hidden;
+    /* Hide the overflow to prevent horizontal scrolling */
     margin: 20px 0;
 }
 
 .carousel button {
     border: none;
-    padding: 10px 30px;
+    padding: 10px 15px;
+    /* Adjust button padding for smaller screens */
     font-size: 16px;
 }
 
@@ -51,3 +54,4 @@
     font-size: 14px;
     color: #555;
 }
+

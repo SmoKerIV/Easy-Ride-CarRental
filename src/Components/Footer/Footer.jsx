@@ -104,9 +104,9 @@ function Footer() {
           >
             <g
               fill="none"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
             >
               <path d="M0 0h24v24H0z" />
               <path

@@ -27,8 +27,11 @@
     margin-right: 10px;
 }
 
-.footer .logo h1 {
-    margin: 0;
+.footer .logo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
 }
 
 .footer .logo span {

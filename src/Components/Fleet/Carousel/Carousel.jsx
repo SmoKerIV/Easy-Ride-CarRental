@@ -4,7 +4,7 @@ import styles from "./Carousel.module.css";
 
 const Carousel = ({ cars }) => {
   const [current, setCurrent] = useState(0);
-  const length = 10;
+  const length = cars.length;
 
   if (!Array.isArray(cars) || cars.length === 0) {
     return <p className={styles.noCars}>No cars available</p>;

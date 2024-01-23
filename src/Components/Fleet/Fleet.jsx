@@ -15,7 +15,6 @@ const Fleet = () => {
         const response = await fetch(CARS_URL);
         const data = await response.json();
         setCars(data.cars);
-        console.log(data);
         setFilteredCars(data.cars); 
       } catch (error) {
         console.error("Error fetching data:", error);

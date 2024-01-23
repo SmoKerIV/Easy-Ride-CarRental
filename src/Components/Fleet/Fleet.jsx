@@ -2,7 +2,7 @@
 'use client'
 import { useState, useEffect } from "react";
 import Carousel from "./Carousel/Carousel";
-import { CARS_URL, CARS_URL2 } from "@/apiconfig/endpoint";
+import { CARS_URL } from "@/apiconfig/endpoint";
 import styles from "./fleet.module.css";
 
 const Fleet = () => {
@@ -12,9 +12,10 @@ const Fleet = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(CARS_URL2);
+        const response = await fetch(CARS_URL);
         const data = await response.json();
         setCars(data.cars);
+        console.log(data);
         setFilteredCars(data.cars); 
       } catch (error) {
         console.error("Error fetching data:", error);

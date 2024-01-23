@@ -1,4 +1,6 @@
 // RootLayout.js
+import Header from "@/Components/Header/Header";
+import Footer from "@/Components/Footer/Footer";
 import { Inter } from "next/font/google"; // Correct the import path
 import "./globals.css";
 
@@ -12,7 +14,11 @@ export const metadata = {
 const RootLayout = ({ children }) => {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+      <Header />
+        {children}
+        <Footer/>
+        </body>
     </html>
   );
 };

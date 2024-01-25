@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link, Button } from "@nextui-org/react";
 import styles from "./Header.module.css";
 import Container from "../Container/Container";
 const Header = () => {
@@ -23,9 +23,9 @@ const Header = () => {
               <Link href="/About">About Us</Link>
             </li>
           </ul>
-          <button>
+          <Button>
             <Link href="/Sign">Sign in</Link>
-          </button>
+          </Button>
         </div>
       </div>
     </Container>

@@ -1,33 +1,29 @@
-import Image from "next/image";
+import { Image } from "@nextui-org/react";
 import styles from "./service.module.css";
-import Link from "next/link";
+import { Link } from "@nextui-org/react";
 function Services() {
-      const servicesData = [
-        {
-          title: "Long-Distance Rental",
-          description: "lorem ipsum dolor sit amet ",
-          imageUrl:
-            "https://www.pngall.com/wp-content/uploads/8/White-SUV-PNG.png",
-        },
-        {
-          title: "Airport Transfers Rental",
-          description: "lorem ipsum dolor sit amet",
-          imageUrl:
-            "https://www.pngall.com/wp-content/uploads/8/White-SUV-PNG.png",
-        },
-        {
-          title: "Business Meeting Rental",
-          description: "lorem ipsum dolor sit amet",
-          imageUrl:
-            "https://www.pngall.com/wp-content/uploads/8/White-SUV-PNG.png",
-        },
-        {
-          title: "Wedding Events Rental",
-          description: "lorem ipsum dolor sit amet",
-          imageUrl:
-            "https://www.pngall.com/wp-content/uploads/8/White-SUV-PNG.png",
-        },
-      ];
+  const servicesData = [
+    {
+      title: "Long-Distance Rental",
+      description: "lorem ipsum dolor sit amet ",
+      imageUrl: "https://www.pngall.com/wp-content/uploads/8/White-SUV-PNG.png",
+    },
+    {
+      title: "Airport Transfers Rental",
+      description: "lorem ipsum dolor sit amet",
+      imageUrl: "https://www.pngall.com/wp-content/uploads/8/White-SUV-PNG.png",
+    },
+    {
+      title: "Business Meeting Rental",
+      description: "lorem ipsum dolor sit amet",
+      imageUrl: "https://www.pngall.com/wp-content/uploads/8/White-SUV-PNG.png",
+    },
+    {
+      title: "Wedding Events Rental",
+      description: "lorem ipsum dolor sit amet",
+      imageUrl: "https://www.pngall.com/wp-content/uploads/8/White-SUV-PNG.png",
+    },
+  ];
   return (
     <div className={styles.services}>
       <div className={styles.servicestitle}>
@@ -40,8 +36,7 @@ function Services() {
               <Image
                 src={service.imageUrl}
                 alt={service.title}
-                width={400}
-                height={400}
+                
               />
             </div>
             <div className={styles.serviceContent}>

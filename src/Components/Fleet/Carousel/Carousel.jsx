@@ -1,8 +1,10 @@
 'use client';
 import { useState } from "react";
 import styles from "./Carousel.module.css";
+import { Image } from "@nextui-org/react";
 
-const Carousel = ({ cars }) => {
+
+const Carousel = ({ cars, onClick }) => {
   const [current, setCurrent] = useState(0);
   const length = cars.length;
 
@@ -19,7 +21,10 @@ const Carousel = ({ cars }) => {
   };
 
   return (
-    <div className={styles.carousel}>
+    <div
+      className={styles.carousel}
+      onClick={() => onClick(cars[current].id, cars[current].brandId)}
+    >
       <button onClick={prevSlide}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -39,7 +44,11 @@ const Carousel = ({ cars }) => {
       {cars.slice(current, current + 3).map((car) => (
         <div key={car.id} className={styles.carouselCard}>
           <div className={styles.imageContainer}>
-            <img className={styles.carImage} src={car.image1} alt={car.name} />
+            <Image
+              className={styles.carImage}
+              src={car.image1}
+              alt={car.name}
+            />
           </div>
           <h3 className={styles.carName}>{car.name}</h3>
           <p className={styles.seats}>Seats: {car.seats}</p>

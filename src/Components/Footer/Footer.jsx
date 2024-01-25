@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@nextui-org/react";
 import styles from "./Footer.module.css";
 function Footer() {
   return (
@@ -132,6 +132,3 @@ function Footer() {
 }
 
 export default Footer;
-
-//   <p>© 2023 EasyRide. All rights reserved.</p>
-//   <p>Terms of Use | Privacy Policy</p>

@@ -46,12 +46,14 @@ function Page({ params }) {
                 padding: "10px",
               }}
               cover={
-                <div style={{ height: "250px", overflow: "hidden" }}>
-                  <Image
-                    className="w-full h-full object-cover"
-                    alt={car.name}
-                    src={car.image1}
-                  />
+                <div className="w-full h-[250px] over-hidden">
+                  <div className="m-auto flex items-center justify-center" >
+                    <Image
+                      className="w-full h-full object-cover "
+                      alt={car.name}
+                      src={car.image1}
+                    />
+                  </div>
                 </div>
               }
               onClick={() => handleCardClick(car.id)}

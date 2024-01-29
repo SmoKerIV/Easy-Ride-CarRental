@@ -107,7 +107,7 @@ function CarPage({ params }) {
 
             <Button
               style={{ backgroundColor: "#0080B4", borderRadius: "8px" }}
-              className="hover:bg-blue-700 text-white font-bold py-2 px-4 text-lg cursor-pointer transition duration-200 items-center justify-center"
+              className="text-white py-2 px-4 text-lg cursor-pointer transition duration-200 items-center justify-center"
               variant="contained"
               color="primary"
             >

@@ -10,6 +10,11 @@
     margin: 0 auto;
     text-align: center;
 }
+.fleetContainer h1 {
+font-size: 40px;
+    font-weight: 900;
+    margin-bottom: 16px;
+}
 
 .fleetContainer h1 {
     font-size: 36px;

@@ -1,7 +1,7 @@
 'use client';
 import { useState } from "react";
 import styles from "./Carousel.module.css";
-import { Image } from "@nextui-org/react";
+import Image from "next/image";
 
 
 const Carousel = ({ cars, onClick }) => {
@@ -23,6 +23,7 @@ const Carousel = ({ cars, onClick }) => {
   return (
     <div
       className={styles.carousel}
+      style={{ cursor: "pointer" }}
       onClick={() => onClick(cars[current].id, cars[current].brandId)}
     >
       <button onClick={prevSlide}>
@@ -48,6 +49,8 @@ const Carousel = ({ cars, onClick }) => {
               className={styles.carImage}
               src={car.image1}
               alt={car.name}
+              width={400}
+              height={400}
             />
           </div>
           <h3 className={styles.carName}>{car.name}</h3>
@@ -55,7 +58,6 @@ const Carousel = ({ cars, onClick }) => {
         </div>
       ))}
       <button onClick={nextSlide}>
-        {" "}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -67,7 +69,7 @@ const Carousel = ({ cars, onClick }) => {
             fill="currentColor"
             d="m12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"
           />
-        </svg>{" "}
+        </svg>
       </button>
     </div>
   );

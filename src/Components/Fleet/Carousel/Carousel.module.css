@@ -7,8 +7,19 @@
 
 .carousel button {
     border: none;
-    padding: 10px 30px;
     font-size: 16px;
+    background: transparent;
+    /* Add a transparent background */
+}
+
+.carousel button * {
+    pointer-events: none;
+    /* Disable pointer events for all child elements of the button */
+}
+
+.carousel button svg {
+    pointer-events: auto;
+    /* Enable pointer events for the SVG inside the button */
 }
 
 .carouselCard {

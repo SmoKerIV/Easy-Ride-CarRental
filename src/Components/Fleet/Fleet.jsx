@@ -52,6 +52,7 @@ const Fleet = () => {
           <Carousel
             onClick={(id, brandId) => handleCardClick(id, brandId)}
             cars={filteredCars}
+            
           />
         </div>
       </div>

@@ -25,7 +25,7 @@ function CarPage({ params }) {
   }, [carId]);
 
   return (
-    <div className="max-w-7xl mx-auto">
+    <div className="max-w-4xl mx-auto">
       <Carousel autoplay effect="fade">
         {car && car.image1 && (
           <div className="relative">

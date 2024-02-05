@@ -30,28 +30,44 @@ function CarPage({ params }) {
         {car && car.image1 && (
           <div className="relative">
             <div className="flex items-center justify-center bg-cover h-650">
-              <Image className="w-full h-auto" src={car.image1} />
+              <Image
+                className="w-full h-auto"
+                src={car.image1}
+                alt={car.name}
+              />
             </div>
           </div>
         )}
         {car && car.image2 && (
           <div className="relative">
             <div className="flex items-center justify-center bg-cover h-650">
-              <Image className="w-full h-auto" src={car.image2} />
+              <Image
+                className="w-full h-auto"
+                src={car.image2}
+                alt={car.name}
+              />
             </div>
           </div>
         )}
         {car && car.image3 && (
           <div className="relative">
             <div className="flex items-center justify-center bg-cover h-650">
-              <Image className="w-full h-auto" src={car.image3} />
+              <Image
+                className="w-full h-auto"
+                src={car.image3}
+                alt={car.name}
+              />
             </div>
           </div>
         )}
         {car && car.image4 && (
           <div className="relative">
             <div className="flex items-center justify-center bg-cover h-650">
-              <Image className="w-full h-auto" src={car.image4} />
+              <Image
+                className="w-full h-auto"
+                src={car.image4}
+                alt={car.name}
+              />
             </div>
           </div>
         )}

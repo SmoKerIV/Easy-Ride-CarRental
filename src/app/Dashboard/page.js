@@ -70,26 +70,26 @@ const CarDashboard = () => {
     }
   };
 
-  const fetchData = async () => {
-    try {
-      setLoading(true);
-      let res = await fetch(`${CARS_URL}?query=${search}`);
-      let jsonData = await res.json();
-
-      // Check if 'cars' property exists, and extract the array
-      const cars = jsonData.success ? jsonData.cars : jsonData;
-
-      // Sort cars by id in ascending order
-      const sortedCars = cars.sort((a, b) => a.id - b.id);
-
-      setCarList(sortedCars);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        let res = await fetch(`${CARS_URL}?query=${search}`);
+        let jsonData = await res.json();
+
+        // Check if 'cars' property exists, and extract the array
+        const cars = jsonData.success ? jsonData.cars : jsonData;
+
+        // Sort cars by id in ascending order
+        const sortedCars = cars.sort((a, b) => a.id - b.id);
+
+        setCarList(sortedCars);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
     fetchData();
   }, [search, refresh]);
 

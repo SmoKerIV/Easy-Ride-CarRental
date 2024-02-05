@@ -36,8 +36,8 @@ function AboutUsPage() {
 
           <h2 className="text-2xl font-bold mb-2">Our Vision</h2>
           <p className="text-lg mb-8">
-            Our vision is to become the world's most loved and profitable car
-            rental bookings provider. We aspire to set new standards of
+            Our vision is to become the world&rsquo;s most loved and profitable
+            car rental bookings provider. We aspire to set new standards of
             excellence in the industry and create lasting impressions.
           </p>
         </div>

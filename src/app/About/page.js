@@ -1,3 +1,5 @@
+import { Image } from "@nextui-org/react";
+
 function AboutUsPage() {
   return (
     <div className="container mx-auto p-8 text-center">
@@ -5,7 +7,7 @@ function AboutUsPage() {
 
       <div className="flex flex-col md:flex-row items-center">
         <div className="md:w-1/2 mb-4 md:mb-0">
-          <img
+          <Image
             className="w-full h-auto rounded-lg"
             src="https://cdn.discordapp.com/attachments/1052301242833051770/1197957008003973200/pngwing.com_4.png?ex=65bd2767&is=65aab267&hm=382f361eed7138e61e553fe9b03dbd2b19b7af68f781d91dafcdd90db8d6694d&" // Replace with your image URL
             alt="About Us"

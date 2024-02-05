@@ -156,7 +156,12 @@ function BrandPage() {
                     onClick={() => handleCardClick(car.brandId, car.id)}
                     onMouseEnter={() => handleCardHover(car.id)}
                     onMouseLeave={handleCardLeave}
-                  ></Card>
+                  >
+                    <Meta
+                      title={car.name} // Add this line to display car name
+                      description={car.brand.name} // Add this line to display brand name
+                    />
+                  </Card>
                 </Col>
               ))
             : showCars
@@ -182,7 +187,12 @@ function BrandPage() {
                     onClick={() => handleCardClick(car.brandId, car.id)}
                     onMouseEnter={() => handleCardHover(car.id)}
                     onMouseLeave={handleCardLeave}
-                  ></Card>
+                  >
+                    <Meta
+                      title={car.name} // Add this line to display car name
+                      description={car.brand.name} // Add this line to display brand name
+                    />
+                  </Card>
                 </Col>
               ))
             : brands.map((brand) => (
@@ -207,7 +217,11 @@ function BrandPage() {
                     onClick={() => handlebrandCardClick(brand.brandId)}
                     onMouseEnter={() => handleCardHover(brand.brandId)}
                     onMouseLeave={handleCardLeave}
-                  ></Card>
+                  >
+                    <Meta
+                      title={brand.name} // Add this line to display brand name
+                    />
+                  </Card>
                 </Col>
               ))}
         </Row>

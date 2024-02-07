@@ -4,8 +4,8 @@ import { NextResponse } from 'next/server';
 const prisma = new PrismaClient();
 
 export const GET = async (req, {params}) => {
-  const { userID } = params;
-  const parsedUserID = parseInt(userID, 10);
+  const { id } = params;
+  const parsedUserID = parseInt(id, 10);
   try {
     const cars = await prisma.cars.findMany({
       where: {

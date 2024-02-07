@@ -58,7 +58,7 @@ function Footer() {
         </div>
         <div className={styles.logo}>
           <h1>
-            Easy<span>Ride</span>
+              Easy<span>Ride</span>
           </h1>
         </div>
         <div>

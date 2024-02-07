@@ -15,7 +15,7 @@ function Hero() {
         <p className={styles.herodescription}>
           <b>
             Easy<span>Ride</span>
-          </b>{" "}
+          </b>
           Car Rental is an online car rental service that provides a wide
           selection of cars for rental at an affordable price.
         </p>
@@ -24,7 +24,7 @@ function Hero() {
         <Image
           src="https://cdn.discordapp.com/attachments/1055011807309353013/1196829279229575188/ss.png?ex=65b90d20&is=65a69820&hm=9a8b18004cbe994eede311148ebcc5b91aeaa33954d727800962704f2e6f00a4&"
           alt="car"
-          disableSkeleton='false'
+          disableSkeleton="false"
         />
       </div>
       <div className={styles.btm}>

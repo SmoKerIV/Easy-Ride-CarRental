@@ -212,7 +212,9 @@ function BrandPage() {
                     onMouseEnter={() => handleCardHover(brand.brandId)}
                     onMouseLeave={handleCardLeave}
                   >
-                    <h1 className="text-white text-xl font-bold">{brand.name}</h1>
+                    <h1 className="text-white text-xl font-bold">
+                      {brand.name}
+                    </h1>
                   </Card>
                 </Col>
               ))}

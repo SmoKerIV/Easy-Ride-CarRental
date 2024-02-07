@@ -10,13 +10,18 @@
 
 }
 
+.hero .herocontent .blur {
+    overflow: visible;
+    z-index: 9999;
+}
+
 .hero .car {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.hero .car img{
+.hero .car img {
     width: 800px;
     height: auto;
 }

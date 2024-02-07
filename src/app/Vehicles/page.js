@@ -157,10 +157,7 @@ function BrandPage() {
                     onMouseEnter={() => handleCardHover(car.id)}
                     onMouseLeave={handleCardLeave}
                   >
-                    <Meta
-                      title={car.name} // Add this line to display car name
-                      description={car.brand.name} // Add this line to display brand name
-                    />
+                    <h1 className="text-white text-xl font-bold">{car.name}</h1>
                   </Card>
                 </Col>
               ))
@@ -188,10 +185,7 @@ function BrandPage() {
                     onMouseEnter={() => handleCardHover(car.id)}
                     onMouseLeave={handleCardLeave}
                   >
-                    <Meta
-                      title={car.name} // Add this line to display car name
-                      description={car.brand.name} // Add this line to display brand name
-                    />
+                    <h1 className="text-white text-xl font-bold">{car.name}</h1>
                   </Card>
                 </Col>
               ))
@@ -218,9 +212,7 @@ function BrandPage() {
                     onMouseEnter={() => handleCardHover(brand.brandId)}
                     onMouseLeave={handleCardLeave}
                   >
-                    <Meta
-                      title={brand.name} // Add this line to display brand name
-                    />
+                    <h1 className="text-white text-xl font-bold">{brand.name}</h1>
                   </Card>
                 </Col>
               ))}

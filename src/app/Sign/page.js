@@ -6,16 +6,62 @@ import { Button, Input } from "antd";
 function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [fullName, setFullName] = useState(""); // Added fullName state
+  const [userName, setUserName] = useState(""); // Added userName state
   const [isRegistering, setIsRegistering] = useState(false);
 
-  const handleLogin = () => {
-    // Implement your login logic here
-    console.log("Logging in with:", email, password);
+  const handleLogin = async () => {
+    try {
+      // Implement your login logic here
+      const response = await fetch("/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        console.log("Login successful:", data.user);
+      } else {
+        console.error("Login failed:", data.message);
+      }
+    } catch (error) {
+      console.error("Error during login:", error);
+    }
   };
 
-  const handleRegister = () => {
-    // Implement your registration logic here
-    console.log("Registering with:", email, password);
+  const handleRegister = async () => {
+    try {
+      // Implement your registration logic here
+      const response = await fetch("/api/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          fullName,
+          userName,
+          password,
+          email,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        console.log("Registration successful:", data.user);
+      } else {
+        console.error("Registration failed:", data.message);
+      }
+    } catch (error) {
+      console.error("Error during registration:", error);
+    }
   };
 
   return (
@@ -47,6 +93,34 @@ function LoginPage() {
           className="mb-4 max-w-md w-full"
           required
         />
+
+        {isRegistering && (
+          <>
+            <label htmlFor="fullName" className="mb-2">
+              Full Name:
+            </label>
+            <Input
+              type="text"
+              id="fullName"
+              value={fullName}
+              onChange={(e) => setFullName(e.target.value)}
+              className="mb-4 max-w-md w-full"
+              required
+            />
+
+            <label htmlFor="userName" className="mb-2">
+              Username:
+            </label>
+            <Input
+              type="text"
+              id="userName"
+              value={userName}
+              onChange={(e) => setUserName(e.target.value)}
+              className="mb-4 max-w-md w-full"
+              required
+            />
+          </>
+        )}
 
         {isRegistering ? (
           <Button type="primary" onClick={handleRegister} className="mb-4">

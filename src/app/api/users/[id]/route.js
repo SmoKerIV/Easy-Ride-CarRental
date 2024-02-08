@@ -3,13 +3,19 @@ import { NextResponse } from 'next/server';
 
 const prisma = new PrismaClient();
 
-export const GET = async (req, res) => {
+export const GET = async (req, {params}) => {
+  const { id } = params;
+  const parsedUserID = parseInt(id, 10);
   try {
-    const users = await prisma.users.findMany();
+    const cars = await prisma.cars.findMany({
+      where: {
+        userId: parsedUserID,
+      },
+    });
+    
     return NextResponse.json({
       success: true,
-      users: users,
-
+      cars: cars,
     });
   } catch (error) {
     return NextResponse.json({
@@ -20,5 +26,3 @@ export const GET = async (req, res) => {
     await prisma.$disconnect();
   }
 };
-
-

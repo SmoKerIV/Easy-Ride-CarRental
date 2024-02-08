@@ -1,62 +1,76 @@
-// Carousel.js
-import React, { useState, useEffect } from "react";
-import Image from "next/image";
+'use client';
+import { useState } from "react";
 import styles from "./Carousel.module.css";
+import Image from "next/image";
 
-const Carousel = ({ cars }) => {
-  const [displayedCars, setDisplayedCars] = useState(1); // Initial number of displayed cars
 
-  useEffect(() => {
-    // Update the number of displayed cars based on screen width
-    const handleResize = () => {
-      if (window.innerWidth <= 768) {
-        setDisplayedCars(1);
-      } else {
-        setDisplayedCars(3);
-      }
-    };
-
-    // Set the initial number of displayed cars
-    handleResize();
-
-    // Listen for window resize events
-    window.addEventListener("resize", handleResize);
-
-    // Cleanup the event listener on component unmount
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
+const Carousel = ({ cars, onClick }) => {
   const [current, setCurrent] = useState(0);
+  const length = cars.length;
+
+  if (!Array.isArray(cars) || cars.length === 0) {
+    return <p className={styles.noCars}>No cars available</p>;
+  }
 
   const nextSlide = () => {
-    setCurrent((prev) => (prev + displayedCars) % cars.length);
+    setCurrent(current === length - 1 ? 0 : current + 1);
   };
 
   const prevSlide = () => {
-    setCurrent((prev) => (prev - displayedCars + cars.length) % cars.length);
+    setCurrent(current === 0 ? length - 1 : current - 1);
   };
 
   return (
-    <div className={styles.carousel}>
-      <button onClick={prevSlide}>{/* Previous button SVG */}</button>
-      {cars.slice(current, current + displayedCars).map((car) => (
+    <div
+      className={styles.carousel}
+      style={{ cursor: "pointer" }}
+      onClick={() => onClick(cars[current].id, cars[current].brandId)}
+    >
+      <button onClick={prevSlide}>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          color="#0080b4"
+        >
+          <g transform="translate(24 0) scale(-1 1)">
+            <path
+              fill="currentColor"
+              d="m12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"
+            />
+          </g>
+        </svg>
+      </button>
+      {cars.slice(current, current + 3).map((car) => (
         <div key={car.id} className={styles.carouselCard}>
           <div className={styles.imageContainer}>
             <Image
               className={styles.carImage}
               src={car.image1}
               alt={car.name}
-              width={300}
-              height={300}
+              width={400}
+              height={400}
             />
           </div>
           <h3 className={styles.carName}>{car.name}</h3>
           <p className={styles.seats}>Seats: {car.seats}</p>
         </div>
       ))}
-      <button onClick={nextSlide}>{/* Next button SVG */}</button>
+      <button onClick={nextSlide}>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          color="#0080b4"
+        >
+          <path
+            fill="currentColor"
+            d="m12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"
+          />
+        </svg>
+      </button>
     </div>
   );
 };

@@ -1,9 +1,8 @@
 "use client";
 import Container from "@/Components/Container/Container";
-import Hero from "@/Components/Hero/page";
-import Services from "@/Components/Services/page";
+import Hero from "@/Components/Hero/hero";
+import Services from "@/Components/Services/services";
 import Fleet from "@/Components/Fleet/Fleet";
-import Footer from "@/Components/Footer/Footer";
 
 const Home = () => {
 
@@ -14,8 +13,7 @@ const Home = () => {
         <Services />
         <Fleet />
       </Container>
-        <Footer/>
-    </>
+        </>
   );
 };
 

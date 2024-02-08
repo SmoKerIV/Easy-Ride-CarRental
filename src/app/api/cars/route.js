@@ -4,8 +4,19 @@ import { NextResponse } from 'next/server';
 const prisma = new PrismaClient();
 
 export const GET = async (req, res) => {
+
+  const searchParams = req.nextUrl.searchParams;
+
+  const query = searchParams.get("query") || undefined;
+
   try {
-    const cars = await prisma.cars.findMany();
+    const cars = await prisma.cars.findMany({
+      where: {
+        name: {
+          contains: query,
+        },
+      },
+    });
     return NextResponse.json({
       success: true,
       cars: cars,

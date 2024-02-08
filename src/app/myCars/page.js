@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { Button, Input, Modal, Popconfirm, Table } from "antd";
+import { Button, Input, Modal, Popconfirm, Table, Select } from "antd";
 import { IoIosRefresh } from "react-icons/io";
 import { Image } from "@nextui-org/react";
 import { FaEdit, FaFileUpload } from "react-icons/fa";
@@ -20,7 +20,7 @@ const CarDashboard = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(true);
-
+const { Option } = Select;
   const showModal = (id) => {
     setSelectedCarId(id);
     const selectedCar = carList.find((car) => car.id === id);
@@ -33,30 +33,38 @@ const CarDashboard = () => {
     setOpen(false);
   };
 
-  const handleInputChange = (name, value, isEditForm = false) => {
-    let parsedValue = value;
-    if (name === "categoryId" && /^\d+$/.test(value)) {
-      parsedValue = parseInt(value, 10);
-    } else if (
-      name === "priceDay" ||
-      name === "priceWeek" ||
-      name === "priceMonth"
-    ) {
-      parsedValue = parseFloat(value);
-    }
+const handleInputChange = (name, value, isEditForm = false) => {
+  let parsedValue;
 
-    if (isEditForm) {
-      setEditFormData((prevData) => ({
-        ...prevData,
-        [name]: parsedValue,
-      }));
-    } else {
-      setNewCarData((prevData) => ({
-        ...prevData,
-        [name]: parsedValue,
-      }));
-    }
-  };
+  switch (name) {
+    case "priceDay":
+    case "priceWeek":
+    case "priceMonth":
+    case "mileage":
+    case "tank":
+      parsedValue = parseFloat(value);
+      break;
+    case "year":
+    case "seats":
+    case "numberDoors":
+      parsedValue = parseInt(value, 10);
+      break;
+    case "category":
+    case "condition":
+      parsedValue = value; // For enums, use the entire value
+      break;
+    default:
+      parsedValue = value;
+  }
+
+  const updateFunction = isEditForm ? setEditFormData : setNewCarData;
+
+  updateFunction((prevData) => ({
+    ...prevData,
+    [name]: parsedValue,
+  }));
+};
+
 
   const handleDeleteClick = async (id) => {
     try {
@@ -120,13 +128,14 @@ const CarDashboard = () => {
         },
         body: JSON.stringify(newCarData),
       });
-      await setRefresh((prevRefresh) => prevRefresh + 1);
+      setRefresh((prevRefresh) => prevRefresh + 1);
     } catch (error) {
       console.error("Error adding data:", error);
     }
+    // Reset newCarData after adding a new car
+    setNewCarData({});
     setOpen(false);
   };
-
   const columns = [
     {
       title: "ID",
@@ -152,6 +161,16 @@ const CarDashboard = () => {
       title: "Name",
       dataIndex: "name",
       key: "name",
+    },
+    {
+      title: "Year",
+      dataIndex: "year",
+      key: "year",
+    },
+    {
+      title: "Model",
+      dataIndex: "model",
+      key: "model",
     },
     {
       title: "Price (Day)",
@@ -262,21 +281,122 @@ const CarDashboard = () => {
           name="name"
           onChange={(e) => handleInputChange("name", e.target.value)}
         />
+        <p>Brand ID</p>
+        <Input
+          name="brandId"
+          onChange={(e) => handleInputChange("brandId", e.target.value)}
+        />
+        <p>Store ID</p>
+        <Input
+          name="storeId"
+          onChange={(e) => handleInputChange("storeId", e.target.value)}
+        />
+        <p>Model</p>
+        <Input
+          name="model"
+          onChange={(e) => handleInputChange("model", e.target.value)}
+        />
+        <p>Year</p>
+        <Input
+          name="year"
+          onChange={(e) => handleInputChange("year", e.target.value)}
+        />
+        <p>Seats</p>
+        <Input
+          name="seats"
+          onChange={(e) => handleInputChange("seats", e.target.value)}
+        />
+        <p>Tank</p>
+        <Input
+          name="tank"
+          onChange={(e) => handleInputChange("tank", e.target.value)}
+        />
+        <p>Fuel Type</p>
+        <Input
+          name="fuel_type"
+          onChange={(e) => handleInputChange("fuel_type", e.target.value)}
+        />
+        <p>Mileage</p>
+        <Input
+          name="mileage"
+          onChange={(e) => handleInputChange("mileage", e.target.value)}
+        />
+        <p>Available</p>
+        <Input
+          name="available"
+          onChange={(e) => handleInputChange("available", e.target.value)}
+        />
+        <p>Plate Number</p>
+        <Input
+          name="plateNumber"
+          onChange={(e) => handleInputChange("plateNumber", e.target.value)}
+        />
+        <p>Image 1</p>
+        <Input
+          name="image1"
+          onChange={(e) => handleInputChange("image1", e.target.value)}
+        />
+        <p>Image 2</p>
+        <Input
+          name="image2"
+          onChange={(e) => handleInputChange("image2", e.target.value)}
+        />
+        <p>Image 3</p>
+        <Input
+          name="image3"
+          onChange={(e) => handleInputChange("image3", e.target.value)}
+        />
+        <p>Image 4</p>
+        <Input
+          name="image4"
+          onChange={(e) => handleInputChange("image4", e.target.value)}
+        />
         <p>Price (Day)</p>
         <Input
           name="priceDay"
           onChange={(e) => handleInputChange("priceDay", e.target.value)}
         />
-        <p>Image</p>
+        <p>Price (Week)</p>
         <Input
-          name="image1"
-          onChange={(e) => handleInputChange("image1", e.target.value)}
+          name="priceWeek"
+          onChange={(e) => handleInputChange("priceWeek", e.target.value)}
+        />
+        <p>Price (Month)</p>
+        <Input
+          name="priceMonth"
+          onChange={(e) => handleInputChange("priceMonth", e.target.value)}
+        />
+        <p>Number of Doors</p>
+        <Input
+          name="numberDoors"
+          onChange={(e) => handleInputChange("numberDoors", e.target.value)}
         />
         <p>Category</p>
-        <Input
-          name="categoryId"
-          onChange={(e) => handleInputChange("categoryId", e.target.value)}
-        />
+        <Select
+          name="category"
+          onChange={(value) => handleInputChange("category", value)}
+          style={{ width: 200 }}
+          value={newCarData.category} // Make sure to pass the correct value from your state
+        >
+          <Option value="SUV">SUV</Option>
+          <Option value="SEDAN">SEDAN</Option>
+          <Option value="SPORT">SPORT</Option>
+          <Option value="PICKUP">PICKUP</Option>
+          <Option value="COUPE">COUPE</Option>
+        </Select>
+
+        <p>Condition</p>
+        <Select
+          name="condition"
+          onChange={(value) => handleInputChange("condition", value)}
+          style={{ width: 200 }}
+          value={newCarData.condition} // Make sure to pass the correct value from your state
+        >
+          <Option value="NEW">NEW</Option>
+          <Option value="GOOD">GOOD</Option>
+          <Option value="OK">OK</Option>
+          <Option value="BAD">BAD</Option>
+        </Select>
         <Space height="10px" />
       </Modal>
     </Container>

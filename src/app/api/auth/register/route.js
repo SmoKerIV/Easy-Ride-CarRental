@@ -8,7 +8,7 @@ export const POST = async (req, res) => {
   const body = await req.json();
 
   // Validate the input
-  if (!body.userName || !body.password || !body.email) {
+  if (!body.userName || !body.password || !body.email || !body.fullName) {
     return NextResponse.json({
       success: false,
       message: 'Username, password and email are required',

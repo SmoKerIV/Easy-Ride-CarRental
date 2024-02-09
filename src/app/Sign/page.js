@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { Button, Input } from "antd";
+import { Button, Input, Select } from "antd";
 
 // Login page component
 function LoginPage() {
@@ -9,6 +9,7 @@ function LoginPage() {
   const [fullName, setFullName] = useState(""); // Added fullName state
   const [userName, setUserName] = useState(""); // Added userName state
   const [isRegistering, setIsRegistering] = useState(false);
+   const [role, setRole] = useState("USER");
 
   const handleLogin = async () => {
     try {
@@ -49,6 +50,7 @@ function LoginPage() {
           userName,
           password,
           email,
+          role,
         }),
       });
 
@@ -119,6 +121,18 @@ function LoginPage() {
               className="mb-4 max-w-md w-full"
               required
             />
+            <label htmlFor="role" className="mb-2">
+              Role:
+            </label>
+            <Select
+              id="role"
+              value={role}
+              onChange={(value) => setRole(value)}
+              className="mb-4 max-w-md w-full"
+            >
+              <Option value="USER">User</Option>
+              <Option value="ADMIN">Admin</Option>
+            </Select>
           </>
         )}
 

@@ -2,19 +2,17 @@
 import React, { useState } from "react";
 import { Button, Input, Select } from "antd";
 
-// Login page component
 function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [fullName, setFullName] = useState(""); // Added fullName state
-  const [userName, setUserName] = useState(""); // Added userName state
+  const [fullName, setFullName] = useState(""); 
+  const [userName, setUserName] = useState(""); 
   const [isRegistering, setIsRegistering] = useState(false);
-   const [role, setRole] = useState("USER");
+  const [role, setRole] = useState("USER");
 
   const handleLogin = async () => {
     try {
-      // Implement your login logic here
-      const response = await fetch("/api/login", {
+      const response = await fetch("/api/auth/signin", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -28,7 +26,7 @@ function LoginPage() {
       const data = await response.json();
 
       if (data.success) {
-        console.log("Login successful:", data.user);
+        console.log("Login successful:", data); 
       } else {
         console.error("Login failed:", data.message);
       }
@@ -36,10 +34,8 @@ function LoginPage() {
       console.error("Error during login:", error);
     }
   };
-
   const handleRegister = async () => {
     try {
-      // Implement your registration logic here
       const response = await fetch("/api/auth/register", {
         method: "POST",
         headers: {

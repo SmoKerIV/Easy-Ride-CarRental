@@ -9,7 +9,7 @@ function LoginPage() {
   const [userName, setUserName] = useState(""); 
   const [isRegistering, setIsRegistering] = useState(false);
   const [role, setRole] = useState("USER");
-
+const { Option } = Select;
   const handleLogin = async () => {
     try {
       const response = await fetch("/api/auth/signin", {

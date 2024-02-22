@@ -21,8 +21,10 @@ const CarDashboard = () => {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(true);
   const { Option } = Select;
-  const user = JSON.parse(localStorage.getItem("user"));
-
+ const user =
+   typeof localStorage !== "undefined"
+     ? JSON.parse(localStorage.getItem("user")) || {}
+     : {};
   const showModal = (id) => {
     setSelectedCarId(id);
     const selectedCar = carList.find((car) => car.id === id);

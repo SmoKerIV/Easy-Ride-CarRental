@@ -12,33 +12,36 @@ function LoginPage() {
   const [isRegistering, setIsRegistering] = useState(false);
   const [role, setRole] = useState("USER");
   const router = useRouter();
-  const handleLogin = async () => {
-    try {
-      const response = await fetch("/api/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          userName,
-          password,
-        }),
-      });
-      const data = await response.json();
-      if (data.success) {
-        console.log("Login successful:", data.user);
-        localStorage.setItem("user", JSON.stringify(data.user));
-        router.push("/dashboard");
-      } else {
-        console.error("Login failed:", data.message);
-        alert(data.message);
-      }
-    } catch (error) {
-      console.error("Error during login:", error);
-      alert("An error occurred during login. Please try again.");
-    }
-  };
+  const { Option } = Select;
+ const handleLogin = async () => {
+   try {
+     const response = await fetch("/api/auth/login", {
+       method: "POST",
+       headers: {
+         "Content-Type": "application/json",
+       },
+       body: JSON.stringify({
+         userName,
+         password,
+       }),
+     });
 
+     const data = await response.json();
+
+     if (data.success) {
+       console.log("Login successful:", data.user);
+       localStorage.setItem("user", JSON.stringify(data.user));
+       localStorage.setItem("token", data.token); // Store the token
+       router.push("/");
+     } else {
+       console.error("Login failed:", data.message);
+       alert(data.message);
+     }
+   } catch (error) {
+     console.error("Error during login:", error);
+     alert("An error occurred during login. Please try again.");
+   }
+ };
   const handleRegister = async () => {
     try {
       const response = await fetch("/api/auth/register", {

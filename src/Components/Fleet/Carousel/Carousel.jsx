@@ -26,7 +26,7 @@ const Carousel = ({ cars, onClick }) => {
       style={{ cursor: "pointer" }}
       onClick={() => onClick(cars[current].id, cars[current].brandId)}
     >
-      <button onClick={prevSlide}>
+      {/* <button onClick={prevSlide}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -41,7 +41,7 @@ const Carousel = ({ cars, onClick }) => {
             />
           </g>
         </svg>
-      </button>
+      </button> */}
       {cars.slice(current, current + 3).map((car) => (
         <div key={car.id} className={styles.carouselCard}>
           <div className={styles.imageContainer}>
@@ -57,7 +57,7 @@ const Carousel = ({ cars, onClick }) => {
           <p className={styles.seats}>Seats: {car.seats}</p>
         </div>
       ))}
-      <button onClick={nextSlide}>
+      {/* <button onClick={nextSlide}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -70,7 +70,7 @@ const Carousel = ({ cars, onClick }) => {
             d="m12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"
           />
         </svg>
-      </button>
+      </button> */}
     </div>
   );
 };

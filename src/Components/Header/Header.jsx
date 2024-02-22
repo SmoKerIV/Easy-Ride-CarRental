@@ -1,7 +1,25 @@
-import { Link, Button } from "@nextui-org/react";
+"use client";
+import { useEffect, useState } from "react";
+import {  Button } from "@nextui-org/react";
 import styles from "./Header.module.css";
 import Container from "../Container/Container";
+import Link from "next/link";
+
 const Header = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    // Check if there is a token in local storage
+    const token = localStorage.getItem("token");
+    setIsAuthenticated(!!token);
+  }, []);
+
+  const handleSignOut = () => {
+    // Clear the token from local storage when signing out
+    localStorage.removeItem("token");
+    setIsAuthenticated(false);
+  };
+
   return (
     <Container width={1400}>
       <div className={styles.header}>
@@ -23,9 +41,15 @@ const Header = () => {
               <Link href="/About">About Us</Link>
             </li>
           </ul>
-          <Button>
-            <Link href="/Sign">Sign in</Link>
-          </Button>
+          {isAuthenticated ? (
+            <Button>
+              <Link href="/myCars">My Cars</Link>
+            </Button>
+          ) : (
+            <Button>
+              <Link href="/Sign">Sign in</Link>
+            </Button>
+          )}
         </div>
       </div>
     </Container>

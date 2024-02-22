@@ -20,7 +20,9 @@ const CarDashboard = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(true);
-const { Option } = Select;
+  const { Option } = Select;
+  const user = JSON.parse(localStorage.getItem("user"));
+
   const showModal = (id) => {
     setSelectedCarId(id);
     const selectedCar = carList.find((car) => car.id === id);
@@ -33,38 +35,41 @@ const { Option } = Select;
     setOpen(false);
   };
 
-const handleInputChange = (name, value, isEditForm = false) => {
-  let parsedValue;
+  const handleInputChange = (name, value, isEditForm = false) => {
+    let parsedValue;
 
-  switch (name) {
-    case "priceDay":
-    case "priceWeek":
-    case "priceMonth":
-    case "mileage":
-    case "tank":
-      parsedValue = parseFloat(value);
-      break;
-    case "year":
-    case "seats":
-    case "numberDoors":
-      parsedValue = parseInt(value, 10);
-      break;
-    case "category":
-    case "condition":
-      parsedValue = value; // For enums, use the entire value
-      break;
-    default:
-      parsedValue = value;
-  }
+    switch (name) {
+      case "priceDay":
+      case "priceWeek":
+      case "priceMonth":
+      case "mileage":
+      case "tank":
+        parsedValue = parseFloat(value);
+        break;
+      case "year":
+      case "seats":
+      case "numberDoors":
+      case "brandId":
+        parsedValue = parseInt(value, 10);
+        break;
+      case "category":
+      case "condition":
+        parsedValue = value; // For enums, use the entire value
+        break;
+      case "available":
+        parsedValue = value.toLowerCase() === "true";
+        break;
+      default:
+        parsedValue = value;
+    }
 
-  const updateFunction = isEditForm ? setEditFormData : setNewCarData;
+    const updateFunction = isEditForm ? setEditFormData : setNewCarData;
 
-  updateFunction((prevData) => ({
-    ...prevData,
-    [name]: parsedValue,
-  }));
-};
-
+    updateFunction((prevData) => ({
+      ...prevData,
+      [name]: parsedValue,
+    }));
+  };
 
   const handleDeleteClick = async (id) => {
     try {
@@ -82,14 +87,12 @@ const handleInputChange = (name, value, isEditForm = false) => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        let res = await fetch(`${CARS_URL}?query=${search}`);
+        let res = await fetch(`${CARS_URL}?query=${search}&userId=${user.id}`);
         let jsonData = await res.json();
 
-        // Check if 'cars' property exists, and extract the array
         const cars = jsonData.success ? jsonData.cars : jsonData;
-
-        // Sort cars by id in ascending order
-        const sortedCars = cars.sort((a, b) => a.id - b.id);
+        const userCars = cars.filter((car) => car.userId === user.id);
+        const sortedCars = userCars.sort((a, b) => a.id - b.id);
 
         setCarList(sortedCars);
       } catch (error) {
@@ -99,10 +102,16 @@ const handleInputChange = (name, value, isEditForm = false) => {
       }
     };
     fetchData();
-  }, [search, refresh]);
+  }, [search, refresh, user.id]);
 
   const handleEditClick = async () => {
     try {
+      // Check if editFormData has the necessary fields
+      if (!editFormData || Object.keys(editFormData).length === 0) {
+        console.error("Edit form data is missing or empty");
+        return;
+      }
+
       let url = `${CARS_URL}/${selectedCarId}`;
       await fetch(url, {
         method: "PUT",
@@ -117,25 +126,29 @@ const handleInputChange = (name, value, isEditForm = false) => {
     }
     setSelectedCarId(null);
   };
-
   const handleAddClick = async () => {
     try {
+      const userId = JSON.parse(localStorage.getItem("user")).id;
+      const newCarDataWithUserId = {
+        ...newCarData,
+        userId: userId,
+      };
       let url = `${CARS_URL}`;
       await fetch(url, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(newCarData),
+        body: JSON.stringify(newCarDataWithUserId),
       });
       setRefresh((prevRefresh) => prevRefresh + 1);
     } catch (error) {
       console.error("Error adding data:", error);
     }
-    // Reset newCarData after adding a new car
     setNewCarData({});
     setOpen(false);
   };
+
   const columns = [
     {
       title: "ID",
@@ -231,6 +244,7 @@ const handleInputChange = (name, value, isEditForm = false) => {
       </div>
       <Space height="20px" />
       <Table columns={columns} dataSource={carList} loading={loading} />
+
       {/* Car Details Modal */}
       <Modal
         title="Car Details"
@@ -247,27 +261,142 @@ const handleInputChange = (name, value, isEditForm = false) => {
           value={editFormData.name}
           onChange={(e) => handleInputChange("name", e.target.value, true)}
         />
+        <p>Brand ID</p>
+        <Input
+          name="brandId"
+          value={editFormData.brandId}
+          onChange={(e) => handleInputChange("brandId", e.target.value, true)}
+        />
+        <p>Model</p>
+        <Input
+          name="model"
+          value={editFormData.model}
+          onChange={(e) => handleInputChange("model", e.target.value, true)}
+        />
+        <p>Year</p>
+        <Input
+          name="year"
+          value={editFormData.year}
+          onChange={(e) => handleInputChange("year", e.target.value, true)}
+        />
+        <p>Seats</p>
+        <Input
+          name="seats"
+          value={editFormData.seats}
+          onChange={(e) => handleInputChange("seats", e.target.value, true)}
+        />
+        <p>Tank</p>
+        <Input
+          name="tank"
+          value={editFormData.tank}
+          onChange={(e) => handleInputChange("tank", e.target.value, true)}
+        />
+        <p>Fuel Type</p>
+        <Input
+          name="fuel_type"
+          value={editFormData.fuel_type}
+          onChange={(e) => handleInputChange("fuel_type", e.target.value, true)}
+        />
+        <p>Mileage</p>
+        <Input
+          name="mileage"
+          value={editFormData.mileage}
+          onChange={(e) => handleInputChange("mileage", e.target.value, true)}
+        />
+        <p>Available</p>
+        <Input
+          name="available"
+          value={editFormData.available}
+          onChange={(e) => handleInputChange("available", e.target.value, true)}
+        />
+        <p>Plate Number</p>
+        <Input
+          name="plateNumber"
+          value={editFormData.plateNumber}
+          onChange={(e) =>
+            handleInputChange("plateNumber", e.target.value, true)
+          }
+        />
+        <p>Image 1</p>
+        <Input
+          name="image1"
+          value={editFormData.image1}
+          onChange={(e) => handleInputChange("image1", e.target.value, true)}
+        />
+        <p>Image 2</p>
+        <Input
+          name="image2"
+          value={editFormData.image2}
+          onChange={(e) => handleInputChange("image2", e.target.value, true)}
+        />
+        <p>Image 3</p>
+        <Input
+          name="image3"
+          value={editFormData.image3}
+          onChange={(e) => handleInputChange("image3", e.target.value, true)}
+        />
+        <p>Image 4</p>
+        <Input
+          name="image4"
+          value={editFormData.image4}
+          onChange={(e) => handleInputChange("image4", e.target.value, true)}
+        />
         <p>Price (Day)</p>
         <Input
           name="priceDay"
           value={editFormData.priceDay}
           onChange={(e) => handleInputChange("priceDay", e.target.value, true)}
         />
-        <p>Image</p>
+        <p>Price (Week)</p>
         <Input
-          name="image1"
-          value={editFormData.image1}
-          onChange={(e) => handleInputChange("image1", e.target.value, true)}
+          name="priceWeek"
+          value={editFormData.priceWeek}
+          onChange={(e) => handleInputChange("priceWeek", e.target.value, true)}
         />
-        <p>Category</p>
+        <p>Price (Month)</p>
         <Input
-          name="category"
-          value={editFormData.categoryId}
+          name="priceMonth"
+          value={editFormData.priceMonth}
           onChange={(e) =>
-            handleInputChange("categoryId", e.target.value, true)
+            handleInputChange("priceMonth", e.target.value, true)
           }
         />
+        <p>Number of Doors</p>
+        <Input
+          name="numberDoors"
+          value={editFormData.numberDoors}
+          onChange={(e) =>
+            handleInputChange("numberDoors", e.target.value, true)
+          }
+        />
+        <p>Category</p>
+        <Select
+          name="category"
+          onChange={(value) => handleInputChange("category", value, true)}
+          style={{ width: 200 }}
+          value={editFormData.category}
+        >
+          <Option value="SUV">SUV</Option>
+          <Option value="SEDAN">SEDAN</Option>
+          <Option value="SPORT">SPORT</Option>
+          <Option value="PICKUP">PICKUP</Option>
+          <Option value="COUPE">COUPE</Option>
+        </Select>
+        <p>Condition</p>
+        <Select
+          name="condition"
+          onChange={(value) => handleInputChange("condition", value, true)}
+          style={{ width: 200 }}
+          value={editFormData.condition}
+        >
+          <Option value="NEW">NEW</Option>
+          <Option value="GOOD">GOOD</Option>
+          <Option value="OK">OK</Option>
+          <Option value="BAD">BAD</Option>
+        </Select>
+        <Space height="10px" />
       </Modal>
+
       {/* Add Car Modal */}
       <Modal
         title="Add Car"
@@ -285,11 +414,6 @@ const handleInputChange = (name, value, isEditForm = false) => {
         <Input
           name="brandId"
           onChange={(e) => handleInputChange("brandId", e.target.value)}
-        />
-        <p>Store ID</p>
-        <Input
-          name="storeId"
-          onChange={(e) => handleInputChange("storeId", e.target.value)}
         />
         <p>Model</p>
         <Input
@@ -376,7 +500,7 @@ const handleInputChange = (name, value, isEditForm = false) => {
           name="category"
           onChange={(value) => handleInputChange("category", value)}
           style={{ width: 200 }}
-          value={newCarData.category} // Make sure to pass the correct value from your state
+          value={newCarData.category}
         >
           <Option value="SUV">SUV</Option>
           <Option value="SEDAN">SEDAN</Option>
@@ -390,7 +514,7 @@ const handleInputChange = (name, value, isEditForm = false) => {
           name="condition"
           onChange={(value) => handleInputChange("condition", value)}
           style={{ width: 200 }}
-          value={newCarData.condition} // Make sure to pass the correct value from your state
+          value={newCarData.condition}
         >
           <Option value="NEW">NEW</Option>
           <Option value="GOOD">GOOD</Option>

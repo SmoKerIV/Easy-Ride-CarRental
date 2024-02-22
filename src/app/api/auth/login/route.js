@@ -1,8 +1,10 @@
 import { PrismaClient } from "@prisma/client";
 import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 
 const prisma = new PrismaClient();
+const secretKey = "hush"; 
 
 export const POST = async (req, res) => {
   const body = await req.json();
@@ -37,15 +39,26 @@ export const POST = async (req, res) => {
       });
     }
 
+    const token = jwt.sign(
+      {
+        userId: user.id,
+        email: user.email,
+        fullName: user.fullName,
+        userName: user.userName,
+      },
+      secretKey,
+      { expiresIn: "12h" } 
+    );
 
     return NextResponse.json({
       success: true,
+      token,
       user: {
         id: user.id,
         userName: user.userName,
         email: user.email,
-        fullName: user.fullName,  
-    },
+        fullName: user.fullName,
+      },
     });
   } catch (error) {
     return NextResponse.json({

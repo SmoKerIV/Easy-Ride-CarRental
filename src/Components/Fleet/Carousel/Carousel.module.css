@@ -12,12 +12,12 @@
     /* Add a transparent background */
 }
 
-.carousel button * {
+.carousel .carouselButton {
     pointer-events: none;
     /* Disable pointer events for all child elements of the button */
 }
 
-.carousel button svg {
+.carousel .carouselButton {
     pointer-events: auto;
     /* Enable pointer events for the SVG inside the button */
 }

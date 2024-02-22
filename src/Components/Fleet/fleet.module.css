@@ -10,8 +10,9 @@
     margin: 0 auto;
     text-align: center;
 }
+
 .fleetContainer h1 {
-font-size: 40px;
+    font-size: 40px;
     font-weight: 900;
     margin-bottom: 16px;
 }
@@ -43,9 +44,68 @@ font-size: 40px;
     background-color: #006080;
 }
 
-.carCards {
+/* carousel.module.css */
+
+.carousel {
     display: flex;
-    justify-content: center;
+    margin: 20px 0;
+}
+
+.carousel button {
+    border: none;
+    font-size: 16px;
+    background: transparent;
+    /* Add a transparent background */
+}
+
+.carousel .carouselButton {
+    pointer-events: none;
+    /* Disable pointer events for all child elements of the button */
+}
+
+.carousel .carouselButton {
+    pointer-events: auto;
+    /* Enable pointer events for the SVG inside the button */
+}
+
+.carouselCard {
+    width: calc(50% - 20px);
+    width: 300px;
+    padding: 16px;
+    margin: 20px;
+    background-color: #1f1f1f;
+    border: 1px solid #6e6e6e;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.carouselCard:hover {
+    transform: scale(1.05);
+}
+
+.imageContainer {
+    position: relative;
+    width: 100%;
+    height: 150px;
+}
+
+.carImage {
+    position: absolute;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.carName {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.seats {
+    font-size: 14px;
+    color: #555;
 }
 
 /* Add more styles to enhance the look of the car cards */

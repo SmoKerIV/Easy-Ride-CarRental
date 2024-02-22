@@ -30,7 +30,6 @@ export const GET = async (req, {params}) => {
 
 export const DELETE = async (req, {params}) => {
   const { id } = params;
-console.log(id)
   try {
     const book = await prisma.booking.delete({
       where: {
@@ -56,9 +55,8 @@ console.log(id)
 
 export const PUT = async (req, {params}) => {
   const { id } = params;
-console.log(id)
   try {
-    const book = await prisma.booking.updatenp({
+    const book = await prisma.booking.update({
       where: {
         id: Number(id),
       },

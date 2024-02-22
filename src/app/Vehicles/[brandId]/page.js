@@ -35,7 +35,7 @@ function Page({ params }) {
     <div className="max-w-screen-xl mx-auto p-8">
       <Row gutter={[16, 16]} justify="space-around">
         {cars.map((car) => (
-          <Col key={car.id} sm={12} md={8} lg={6}>
+          <Col key={car.id} sm={12} md={10} lg={8}>
             <Card
               hoverable
               style={{
@@ -47,7 +47,7 @@ function Page({ params }) {
               }}
               cover={
                 <div className="w-full h-[250px] over-hidden">
-                  <div className="m-auto flex items-center justify-center" >
+                  <div className="m-auto flex items-center justify-center">
                     <Image
                       className="w-full h-full object-cover "
                       alt={car.name}

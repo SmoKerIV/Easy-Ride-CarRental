@@ -56,12 +56,14 @@ console.log(id)
 
 export const PUT = async (req, {params}) => {
   const { id } = params;
+  const body = await req.json();
 console.log(id)
   try {
     const car = await prisma.cars.update({
       where: {
-        id: Number(id),
+        id: Number(id),   
       },
+      data: body,
     });
     
     return NextResponse.json({
